@@ -1,12 +1,24 @@
 <script setup>
+import { ref } from 'vue';
+
 function showTip() {
   alert('你好')
 }
-</script>
-<template>
-  <div @click="showTip" class="todo-button">Click me!</div>
-</template>
 
+const text = ref('')
+
+let list = ref(['姬', '霓', '泰', '没'])
+</script>
+<!-- ———————————————— -->
+<template>
+  <div v-for="item in list" class="title-item">{{ item }}</div>
+  <div @click="showTip" class="todo-button">Click me!</div>
+  <div class="todo-input">
+    <input v-model="text" type="text" />
+    <div>{{ text }}</div>
+  </div>
+</template>
+<!-- ———————————————— -->
 <style scoped>
 .todo-app {
   box-sizing: border-box;
@@ -56,6 +68,22 @@ function showTip() {
 }
 
 .item {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  height: 50px;
+  margin: 8px auto;
+  padding: 16px;
+  border-radius: 20px;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 20px;
+}
+
+.title-item {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
   box-sizing: border-box;
   display: flex;
   align-items: center;
