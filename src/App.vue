@@ -1,17 +1,55 @@
 <script setup>
 import { ref } from 'vue';
 
+const value = ref('')
+const list = ref([
+  {
+    isComplete: false,
+    text: "吃饭"
+  },
+  {
+    isComplete: false,
+    text: "睡觉"
+  },
+  {
+    isComplete: false,
+    text: "欢乐豆"
+  }
+])
+
+function add() {
+  console.log(value.value)
+}
+
+// ————————整活片段————————
 function showTip() {
   alert('你好')
 }
-
 const text = ref('')
-
-let list = ref(['姬', '霓', '泰', '没'])
+let meme_list = ref(['姬', '霓', '泰', '没'])
 </script>
 <!-- ———————————————— -->
 <template>
-  <div v-for="item in list" class="title-item">{{ item }}</div>
+  <div class="todo-app">
+
+    <div class="title">My First TodoApp</div>
+
+    <div class="todo-form">
+      <input v-model="value" type="text" class="todo-input" placeholder="Add a todo" />
+      <div @click="add" class="todo-button">Add Todo</div>
+    </div>
+
+    <div v-for="item in list" class="completed">
+      <div>
+        <input type="checkbox" />
+        <span class="name">{{ item.text }}</span>
+      </div>
+      <div class="del">del</div>
+    </div>
+
+  </div>
+  <!-- ————————整活片段———————— -->
+  <div v-for="item in meme_list" class="title-item">{{ item }}</div>
   <div @click="showTip" class="todo-button">Click me!</div>
   <div class="todo-input">
     <input v-model="text" type="text" />
