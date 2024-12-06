@@ -12,13 +12,21 @@ const list = ref([
     text: "睡觉"
   },
   {
-    isComplete: false,
+    isComplete: true,
     text: "欢乐豆"
   }
 ])
 
 function add() {
-  console.log(value.value)
+  list.value.push({
+    isComplete: false,
+    text: value.value
+  })
+  value.value = ''
+}
+
+function del(index) {
+  list.value.splice(index, 1)
 }
 
 // ————————整活片段————————
@@ -39,12 +47,12 @@ let meme_list = ref(['姬', '霓', '泰', '没'])
       <div @click="add" class="todo-button">Add Todo</div>
     </div>
 
-    <div v-for="item in list" class="completed">
+    <div v-for="(item, index) in list" :class="[item.isComplete ? 'completed' : 'item']">
       <div>
-        <input type="checkbox" />
+        <input v-model="item.isComplete" type="checkbox" />
         <span class="name">{{ item.text }}</span>
       </div>
-      <div class="del">del</div>
+      <div @click="del(index)" class="del">del</div>
     </div>
 
   </div>
